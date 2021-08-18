@@ -1,32 +1,48 @@
 <template>
   <div class="inputBox shadow">
-     <input type="text" v-model="newTodoItem" v-on:keyup.enter="addTodo">
+     <input class="input" type="text" v-model="newTodoItem" v-on:keyup.enter="addTodo">
      <!-- <button v-on:click="addTodo">add</button> -->
      <span class="addContainer" v-on:click="addTodo">
         <!-- https://fontawesome.com/v5.15/icons/plus?style=solid -->
         <i class="fas fa-plus addBtn"></i>
      </span>
+
+      <modal v-if="showModal" @close="showModal = false">
+      <!--
+         you can use custom content here to overwrite
+         default content
+      -->
+         <h3 slot="header">custom header</h3>
+      </modal>
   </div>
 </template>
 
 <script>
+import Modal from './common/modal.vue'
 export default {
    data: function() {
       return {
-         newTodoItem: ""
+         newTodoItem: "",
+         showModal: false
       }
    },
    methods: {
       addTodo: function() {
          // console.log(this.newTodoItem)
 
-         // 개발자모드 -> Application -> LocalStorage 에서 확인 가능
-         localStorage.setItem(this.newTodoItem, this.newTodoItem)
-         this.clearInput()
+         if (this.newTodoItem !== '') {
+            this.$emit('addTodoItem', this.newTodoItem)
+            this.clearInput()
+         } else {
+            alert('type sth')
+         }
       },
       clearInput: function() {
          this.newTodoItem = ''
       }
+   },
+   components: {
+
    }
 }
 </script>
