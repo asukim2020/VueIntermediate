@@ -31,3 +31,6 @@ default( [Vue 2] babel,eslint) 선택
 
 cd vue-cli
 npm run serve
+
+vuex 설치
+npm install vuex --save
