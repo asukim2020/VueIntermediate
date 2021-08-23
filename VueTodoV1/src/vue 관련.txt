@@ -13,6 +13,7 @@ VSCode 플러그인
 - Material Icon Theme
 - Live Server
 - ESLint
+- TSLint 
 - Prettier
 - Auto Close Tag
 - Atom Keymap
